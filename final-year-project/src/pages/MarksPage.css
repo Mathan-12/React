@@ -1,0 +1,24 @@
+.result-container {
+  text-align: center;
+  padding: 40px;
+}
+
+input {
+  padding: 8px;
+  margin: 10px;
+  width: 250px;
+}
+
+button {
+  padding: 8px 15px;
+  cursor: pointer;
+  color: black;
+}
+
+.team-details {
+  margin-top: 20px;
+  padding: 20px;
+  background: #f2f2f2;
+  display: inline-block;
+  border-radius: 8px;
+}

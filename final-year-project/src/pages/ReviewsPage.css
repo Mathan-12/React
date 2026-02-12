@@ -1,0 +1,27 @@
+.reviews-container {
+  text-align: center;
+  padding: 40px;
+}
+
+.reviews-container h1 {
+  margin-bottom: 30px;
+}
+
+.review-box {
+  width: 250px;
+  margin: 15px auto;
+  padding: 15px;
+  background-color: #f2f2f2;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.review-box:hover {
+  background-color: #dcdcdc;
+}
+
+.final {
+  background-color: #ffe4b5;
+}
