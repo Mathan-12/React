@@ -17,23 +17,23 @@ function App() {
       <div className="container">
         <div className="dashboard-box">
           <h1>Welcome {name} 🎉</h1>
-          <h1>Project Management System</h1>
+          <h2>Project Management System</h2>
 
           <div className="module-container">
             <div className="module-box">
-              <h2> Teams</h2>
+              <h2>Teams</h2>
             </div>
 
             <div className="module-box">
-              <h2> Reviews</h2>
+              <h2>Reviews</h2>
             </div>
 
             <div className="module-box">
-              <h2> Marks</h2>
+              <h2>Marks</h2>
             </div>
 
             <div className="module-box">
-              <h2> Validation Status</h2>
+              <h2>Validation Status</h2>
             </div>
           </div>
         </div>
@@ -55,17 +55,8 @@ function App() {
             required
           />
 
-          <input
-            type="text"
-            placeholder="Enter Department"
-            required
-          />
-
-          <input
-            type="text"
-            placeholder="Enter College"
-            required
-          />
+          <input type="text" placeholder="Enter Department" required />
+          <input type="text" placeholder="Enter College" required />
 
           <button type="submit">Login</button>
         </form>
