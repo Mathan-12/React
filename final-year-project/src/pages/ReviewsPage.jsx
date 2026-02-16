@@ -1,11 +1,15 @@
+import { useNavigate } from "react-router-dom";
 import "./ReviewsPage.css";
 
+
 function ReviewsPage() {
+  const navigate = useNavigate();
+
   return (
     <div className="reviews-container">
       <h1>Reviews</h1>
 
-      <div className="review-box">Review 1</div>
+      <div className="review-box" onClick={() => navigate("/review1")}>Review 1</div>
       <div className="review-box">Review 2</div>
       <div className="review-box">Review 3</div>
       <div className="review-box final">Final Review 📝</div>

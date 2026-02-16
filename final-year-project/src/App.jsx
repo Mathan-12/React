@@ -5,7 +5,7 @@ import TeamsPage from "./pages/Teamspage";
 import ReviewsPage from "./pages/ReviewsPage";
 import MarksPage from "./pages/MarksPage";
 import ValidationPage from "./pages/ValidationPage";
-import FirstReview from "./pages/firstreview";  // ✅ Correct import
+import Review1Page from "./pages/firstreview";  // ✅ Consistent naming
 import "./app.css";
 
 function App() {
@@ -20,6 +20,11 @@ function App() {
 
   return (
     <Routes>
+      {/* Public routes (accessible without login) */}
+      <Route path="/reviews" element={<ReviewsPage />} />
+      <Route path="/review1" element={<Review1Page />} />
+
+      {/* Login route */}
       {!isLoggedIn ? (
         <Route
           path="/"
@@ -44,12 +49,11 @@ function App() {
         />
       ) : (
         <>
+          {/* Protected routes (only after login) */}
           <Route path="/" element={<Dashboard name={name} />} />
           <Route path="/teams" element={<TeamsPage />} />
-          <Route path="/reviews" element={<ReviewsPage />} />
           <Route path="/marks" element={<MarksPage />} />
           <Route path="/validation" element={<ValidationPage />} />
-          <Route path="/review1" element={<FirstReview />} /> {/* ✅ Fixed */}
         </>
       )}
     </Routes>
