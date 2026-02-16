@@ -5,19 +5,32 @@ function ResultPage() {
   const [teamName, setTeamName] = useState("");
   const [teamData, setTeamData] = useState(null);
 
-  const [r1, setR1] = useState("");
-  const [r2, setR2] = useState("");
-  const [r3, setR3] = useState("");
-
-  const [synopsis, setSynopsis] = useState(false);
-  const [report, setReport] = useState(false);
-  const [presentation, setPresentation] = useState(false);
-  const [reviewsDone, setReviewsDone] = useState(false);
-
+  // Simulated Database Data
   const teams = [
-    { id: "T101", name: "Alpha", title: "AI Chatbot" },
-    { id: "T102", name: "Beta", title: "E-Commerce Website" },
-    { id: "T103", name: "Gamma", title: "Translation System" },
+    {
+      id: "T101",
+      name: "Alpha",
+      title: "AI Chatbot",
+      r1: 50,
+      r2: 55,
+      r3: 60,
+      synopsis: true,
+      report: true,
+      presentation: true,
+      reviewsDone: true
+    },
+    {
+      id: "T102",
+      name: "Beta",
+      title: "E-Commerce Website",
+      r1: 40,
+      r2: 45,
+      r3: 30,
+      synopsis: true,
+      report: false,   // one unchecked
+      presentation: true,
+      reviewsDone: true
+    }
   ];
 
   const handleSearch = () => {
@@ -27,16 +40,22 @@ function ResultPage() {
     setTeamData(found || null);
   };
 
-  const total =
-    (Number(r1) || 0) +
-    (Number(r2) || 0) +
-    (Number(r3) || 0);
+  // Calculate total
+  const total = teamData
+    ? teamData.r1 + teamData.r2 + teamData.r3
+    : 0;
 
-  const allChecks =
-    synopsis && report && presentation && reviewsDone;
+  // Check if ALL validations are true
+  const allChecks = teamData
+    ? teamData.synopsis &&
+      teamData.report &&
+      teamData.presentation &&
+      teamData.reviewsDone
+    : false;
 
+  // Final Status
   const finalStatus =
-    total >= 150 && allChecks
+    teamData && total >= 150 && allChecks
       ? "Complete ✅"
       : "Not Complete ❌";
 
@@ -60,24 +79,10 @@ function ResultPage() {
 
           <hr />
 
-          <input
-            type="number"
-            placeholder="Review 1 Marks"
-            value={r1}
-            onChange={(e) => setR1(e.target.value)}
-          />
-          <input
-            type="number"
-            placeholder="Review 2 Marks"
-            value={r2}
-            onChange={(e) => setR2(e.target.value)}
-          />
-          <input
-            type="number"
-            placeholder="Review 3 Marks"
-            value={r3}
-            onChange={(e) => setR3(e.target.value)}
-          />
+          {/* READ ONLY MARKS */}
+          <p><strong>Review 1 Marks:</strong> {teamData.r1}</p>
+          <p><strong>Review 2 Marks:</strong> {teamData.r2}</p>
+          <p><strong>Review 3 Marks:</strong> {teamData.r3}</p>
 
           <h3>Total Marks: {total}</h3>
 
@@ -86,41 +91,25 @@ function ResultPage() {
           <h3>Validation Checklist</h3>
 
           <label>
-            <input
-              type="checkbox"
-              checked={synopsis}
-              onChange={() => setSynopsis(!synopsis)}
-            />
+            <input type="checkbox" checked={teamData.synopsis} readOnly />
             Synopsis uploaded?
           </label>
           <br />
 
           <label>
-            <input
-              type="checkbox"
-              checked={report}
-              onChange={() => setReport(!report)}
-            />
+            <input type="checkbox" checked={teamData.report} readOnly />
             Report submitted?
           </label>
           <br />
 
           <label>
-            <input
-              type="checkbox"
-              checked={presentation}
-              onChange={() => setPresentation(!presentation)}
-            />
+            <input type="checkbox" checked={teamData.presentation} readOnly />
             Presentation done?
           </label>
           <br />
 
           <label>
-            <input
-              type="checkbox"
-              checked={reviewsDone}
-              onChange={() => setReviewsDone(!reviewsDone)}
-            />
+            <input type="checkbox" checked={teamData.reviewsDone} readOnly />
             All reviews completed?
           </label>
 

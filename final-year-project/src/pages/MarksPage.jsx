@@ -5,15 +5,32 @@ function ResultPage() {
   const [teamName, setTeamName] = useState("");
   const [teamData, setTeamData] = useState(null);
 
-  const [r1, setR1] = useState("");
-  const [r2, setR2] = useState("");
-  const [r3, setR3] = useState("");
-
-  // Sample team data (later you can connect database)
+  // Sample team data with marks (later connect DB)
   const teams = [
-    { id: "T101", name: "Alpha", title: "AI Chatbot" },
-    { id: "T102", name: "Beta", title: "E-Commerce Website" },
-    { id: "T103", name: "Gamma", title: "Translation System" },
+    { 
+      id: "T101", 
+      name: "Alpha", 
+      title: "AI Chatbot",
+      r1: 50,
+      r2: 55,
+      r3: 60
+    },
+    { 
+      id: "T102", 
+      name: "Beta", 
+      title: "E-Commerce Website",
+      r1: 40,
+      r2: 45,
+      r3: 50
+    },
+    { 
+      id: "T103", 
+      name: "Gamma", 
+      title: "Translation System",
+      r1: 60,
+      r2: 65,
+      r3: 70
+    },
   ];
 
   const handleSearch = () => {
@@ -23,16 +40,15 @@ function ResultPage() {
     setTeamData(found || null);
   };
 
-  const total =
-    (Number(r1) || 0) +
-    (Number(r2) || 0) +
-    (Number(r3) || 0);
+  const total = teamData
+    ? teamData.r1 + teamData.r2 + teamData.r3
+    : 0;
 
   const result = total >= 150 ? "Complete ✅" : "Not Complete ❌";
 
   return (
     <div className="result-container">
-      <h1>Marks Entry</h1>
+      <h1>Final Result</h1>
 
       {/* Team Search */}
       <input
@@ -52,26 +68,9 @@ function ResultPage() {
 
           <hr />
 
-          <input
-            type="number"
-            placeholder="Review 1 Marks"
-            value={r1}
-            onChange={(e) => setR1(e.target.value)}
-          />
-
-          <input
-            type="number"
-            placeholder="Review 2 Marks"
-            value={r2}
-            onChange={(e) => setR2(e.target.value)}
-          />
-
-          <input
-            type="number"
-            placeholder="Review 3 Marks"
-            value={r3}
-            onChange={(e) => setR3(e.target.value)}
-          />
+          <p><strong>Review 1:</strong> {teamData.r1}</p>
+          <p><strong>Review 2:</strong> {teamData.r2}</p>
+          <p><strong>Review 3:</strong> {teamData.r3}</p>
 
           <h3>Total: {total}</h3>
           <h3>Status: {result}</h3>

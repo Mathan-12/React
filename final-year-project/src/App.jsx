@@ -5,6 +5,7 @@ import TeamsPage from "./pages/Teamspage";
 import ReviewsPage from "./pages/ReviewsPage";
 import MarksPage from "./pages/MarksPage";
 import ValidationPage from "./pages/ValidationPage";
+import FirstReview from "./pages/firstreview";  // ✅ Correct import
 import "./app.css";
 
 function App() {
@@ -48,9 +49,11 @@ function App() {
           <Route path="/reviews" element={<ReviewsPage />} />
           <Route path="/marks" element={<MarksPage />} />
           <Route path="/validation" element={<ValidationPage />} />
+          <Route path="/review1" element={<FirstReview />} /> {/* ✅ Fixed */}
         </>
       )}
     </Routes>
   );
 }
+
 export default App;
