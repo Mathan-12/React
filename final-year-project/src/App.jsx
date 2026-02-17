@@ -5,7 +5,12 @@ import TeamsPage from "./pages/Teamspage";
 import ReviewsPage from "./pages/ReviewsPage";
 import MarksPage from "./pages/MarksPage";
 import ValidationPage from "./pages/ValidationPage";
-import Review1Page from "./pages/firstreview";  // ✅ Consistent naming
+
+import Review1Page from "./pages/Reviewsall/firstreview";
+import SecondReview from "./pages/Reviewsall/2Secondreview";
+import ThirdReview from "./pages/Reviewsall/thridreview";
+import FinalReview from "./pages/Reviewsall/finalreview";
+
 import "./app.css";
 
 function App() {
@@ -20,9 +25,12 @@ function App() {
 
   return (
     <Routes>
-      {/* Public routes (accessible without login) */}
+      {/* Public routes */}
       <Route path="/reviews" element={<ReviewsPage />} />
       <Route path="/review1" element={<Review1Page />} />
+      <Route path="/review2" element={<SecondReview />} />
+      <Route path="/review3" element={<ThirdReview />} />
+      <Route path="/review4" element={<FinalReview />} />
 
       {/* Login route */}
       {!isLoggedIn ? (
@@ -49,7 +57,6 @@ function App() {
         />
       ) : (
         <>
-          {/* Protected routes (only after login) */}
           <Route path="/" element={<Dashboard name={name} />} />
           <Route path="/teams" element={<TeamsPage />} />
           <Route path="/marks" element={<MarksPage />} />
