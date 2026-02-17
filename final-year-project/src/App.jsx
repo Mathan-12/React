@@ -7,9 +7,9 @@ import MarksPage from "./pages/MarksPage";
 import ValidationPage from "./pages/ValidationPage";
 
 import Review1Page from "./pages/Reviewsall/firstreview";
-import SecondReview from "./pages/Reviewsall/2Secondreview";
-import ThirdReview from "./pages/Reviewsall/thridreview";
-import FinalReview from "./pages/Reviewsall/finalreview";
+import Secondreview1 from "./pages/Reviewsall/Secondreview";
+import Thridreview from "./pages/Reviewsall/thridreview";
+import Finalreview from "./pages/Reviewsall/finalreview";
 
 import "./app.css";
 
@@ -28,9 +28,9 @@ function App() {
       {/* Public routes */}
       <Route path="/reviews" element={<ReviewsPage />} />
       <Route path="/review1" element={<Review1Page />} />
-      <Route path="/review2" element={<SecondReview />} />
-      <Route path="/review3" element={<ThirdReview />} />
-      <Route path="/review4" element={<FinalReview />} />
+      <Route path="/review2" element={<Secondreview1 />} />
+      <Route path="/review3" element={<Thridreview />} />
+      <Route path="/review4" element={<Finalreview />} />
 
       {/* Login route */}
       {!isLoggedIn ? (

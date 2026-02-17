@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./firstreview.css";
 
-function thridreview() {
+function Thridreview() {
   const [teamId, setTeamId] = useState("");
   const [teamData, setTeamData] = useState(null);
 
@@ -34,7 +34,7 @@ function thridreview() {
 
   return (
     <div className="review1-container">
-      <h1>Review 1</h1>
+      <h1>Review 3</h1>
 
       <div className="search-box">
         <input
@@ -60,4 +60,4 @@ function thridreview() {
   );
 }
 
-export default thridreview;
+export default Thridreview;
