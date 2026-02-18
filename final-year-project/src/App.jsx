@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import Dashboard from "./pages/dashboard";
 import TeamsPage from "./pages/Teamspage";
 import ReviewsPage from "./pages/ReviewsPage";
@@ -10,10 +10,13 @@ import Review1Page from "./pages/Reviewsall/firstreview";
 import Secondreview1 from "./pages/Reviewsall/Secondreview";
 import Thridreview from "./pages/Reviewsall/thridreview";
 import Finalreview from "./pages/Reviewsall/finalreview";
-
-import createteam from "./Teamsall/createteam";
+import Createteam from "./Teamsall/createteam";
 
 import "./app.css";
+
+function PrivateRoute({ element, isLoggedIn }) {
+  return isLoggedIn ? element : <Navigate to="/" />;
+}
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -33,13 +36,13 @@ function App() {
       <Route path="/review2" element={<Secondreview1 />} />
       <Route path="/review3" element={<Thridreview />} />
       <Route path="/review4" element={<Finalreview />} />
-      <Route path="/teams2" element={<createteam /> } />
+      <Route path="/teams2" element={<Createteam />} />
 
       {/* Login route */}
-      {!isLoggedIn ? (
-        <Route
-          path="/"
-          element={
+      <Route
+        path="/"
+        element={
+          !isLoggedIn ? (
             <div className="container">
               <div className="login-box">
                 <h1>Project Management System</h1>
@@ -56,16 +59,25 @@ function App() {
                 </form>
               </div>
             </div>
-          }
-        />
-      ) : (
-        <>
-          <Route path="/" element={<Dashboard name={name} />} />
-          <Route path="/teams" element={<TeamsPage />} />
-          <Route path="/marks" element={<MarksPage />} />
-          <Route path="/validation" element={<ValidationPage />} />
-        </>
-      )}
+          ) : (
+            <Dashboard name={name} />
+          )
+        }
+      />
+
+      {/* Protected routes */}
+      <Route
+        path="/teams"
+        element={<PrivateRoute isLoggedIn={isLoggedIn} element={<TeamsPage />} />}
+      />
+      <Route
+        path="/marks"
+        element={<PrivateRoute isLoggedIn={isLoggedIn} element={<MarksPage />} />}
+      />
+      <Route
+        path="/validation"
+        element={<PrivateRoute isLoggedIn={isLoggedIn} element={<ValidationPage />} />}
+      />
     </Routes>
   );
 }
