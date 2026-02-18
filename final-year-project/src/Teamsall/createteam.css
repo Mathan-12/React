@@ -60,3 +60,12 @@
   border: none;
   cursor: pointer;
 }
+.member-box {
+  margin-top: 25px;
+  padding: 20px;
+  background-color: #f4f6f9;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}

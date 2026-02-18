@@ -1,11 +1,12 @@
 import { useState } from "react";
-import "./deleteteam.css";
+import "./assignguide.css";
 
-function Deleteteam() {
+function Assignguide() {
   const [teamId, setTeamId] = useState("");
   const [teamData, setTeamData] = useState(null);
+  const [mentor, setMentor] = useState("");
 
-  // Dummy stored team (example)
+  // Dummy stored team
   const storedTeam = {
     id: "TEAM-1234",
     teamName: "Avengers",
@@ -27,15 +28,18 @@ function Deleteteam() {
     }
   };
 
-  const handleDelete = () => {
-    alert("Deleted Successfully ✅");
-    setTeamData(null);
-    setTeamId("");
+  const handleSubmit = () => {
+    if (mentor) {
+      alert("Successfully Assigned ✅");
+      setMentor("");
+    } else {
+      alert("Please Select Mentor");
+    }
   };
 
   return (
-    <div className="delete-container">
-      <h1 className="delete-title">Delete Team</h1>
+    <div className="assign-container">
+      <h1 className="assign-title">Assign Guide</h1>
 
       <div className="search-box">
         <input
@@ -54,15 +58,26 @@ function Deleteteam() {
           <h2>Team Details</h2>
           <p><strong>Team ID:</strong> {teamData.id}</p>
           <p><strong>Team Name:</strong> {teamData.teamName}</p>
-          <p><strong>Leader Name:</strong> {teamData.leader.name}</p>
+          <p><strong>Leader:</strong> {teamData.leader.name}</p>
           <p><strong>Department:</strong> {teamData.leader.dept}</p>
-          <p><strong>Year:</strong> {teamData.leader.year}</p>
-          <p><strong>Register No:</strong> {teamData.leader.regNo}</p>
           <p><strong>Project:</strong> {teamData.leader.project}</p>
 
-          <div className="delete-btn-section">
-            <button className="delete-btn" onClick={handleDelete}>
-              Delete
+          <div className="mentor-section">
+            <label>Select Mentor</label>
+            <select
+              value={mentor}
+              onChange={(e) => setMentor(e.target.value)}
+            >
+              <option value="">-- Select Mentor --</option>
+              <option value="Velkumar">Velkumar</option>
+              <option value="Abirami">Abirami</option>
+              <option value="Archana">Archana</option>
+            </select>
+          </div>
+
+          <div className="submit-section">
+            <button className="submit-btn" onClick={handleSubmit}>
+              Submit
             </button>
           </div>
         </div>
@@ -71,4 +86,4 @@ function Deleteteam() {
   );
 }
 
-export default Deleteteam;
+export default Assignguide;

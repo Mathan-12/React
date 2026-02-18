@@ -1,48 +1,54 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import "./createteam.css";
 
 function Createteam() {
-  const [showForm, setShowForm] = useState(false);
+  const [step, setStep] = useState(1);
   const [teamName, setTeamName] = useState("");
+  const [memberCount, setMemberCount] = useState("");
+
+  const [leader, setLeader] = useState({
+    name: "",
+    dept: "",
+    year: "",
+    regNo: "",
+    project: "",
+  });
+
   const [members, setMembers] = useState([]);
-  const [showDetails, setShowDetails] = useState(false);
-
-  const navigate = useNavigate();
-
-  const handleCreate = () => {
-    setShowForm(true);
-  };
 
   const handleOk = () => {
-    if (teamName && members.length > 0) {
-      setShowDetails(true);
-      setShowForm(false);
+    if (teamName && memberCount > 0) {
+      setStep(2);
     } else {
-      alert("Fill all fields");
+      alert("Fill Team Name and Member Count");
     }
   };
 
-  const handleMembersChange = (e) => {
-    setMembers(e.target.value.split(","));
+  const handleAddMember = () => {
+    if (members.length < memberCount - 1) {
+      setMembers([
+        ...members,
+        { name: "", dept: "", year: "", regNo: "" },
+      ]);
+    }
   };
 
-  const addMember = () => {
-    setMembers([...members, ""]);
+  const handleMemberChange = (index, field, value) => {
+    const updatedMembers = [...members];
+    updatedMembers[index][field] = value;
+    setMembers(updatedMembers);
+  };
+
+  const handleSubmit = () => {
+    alert("Successfully Submitted ✅");
   };
 
   return (
     <div className="teams-container">
-      <h1 className="center-title">Teams</h1>
+      <h1 className="center-title">Create Team</h1>
 
-      {!showForm && !showDetails && (
-        <button className="create-btn" onClick={handleCreate}>
-          Create Team
-        </button>
-      )}
-
-      {/* Step 1 Form */}
-      {showForm && (
+      {/* STEP 1 */}
+      {step === 1 && (
         <div className="form-box">
           <input
             type="text"
@@ -50,51 +56,112 @@ function Createteam() {
             value={teamName}
             onChange={(e) => setTeamName(e.target.value)}
           />
+
           <input
-            type="text"
-            placeholder="Enter Members (comma separated)"
-            onChange={handleMembersChange}
+            type="number"
+            placeholder="Enter Member Count"
+            value={memberCount}
+            onChange={(e) => setMemberCount(e.target.value)}
           />
-          <button onClick={handleOk}>OK</button>
+
+          <button className="ok-btn" onClick={handleOk}>
+            OK
+          </button>
         </div>
       )}
 
-      {/* Step 2 Details Section */}
-      {showDetails && (
+      {/* STEP 2 */}
+      {step === 2 && (
         <div className="details-box">
           <h2>Team Leader Details</h2>
 
-          <p>
-            <strong>Name:</strong> {members[0]}
-          </p>
-          <p>
-            <strong>Department:</strong> CSE
-          </p>
-          <p>
-            <strong>Year:</strong> 3rd Year
-          </p>
-          <p>
-            <strong>Register No:</strong> 123456
-          </p>
+          <input
+            type="text"
+            placeholder="Leader Name"
+            onChange={(e) =>
+              setLeader({ ...leader, name: e.target.value })
+            }
+          />
+          <input
+            type="text"
+            placeholder="Department"
+            onChange={(e) =>
+              setLeader({ ...leader, dept: e.target.value })
+            }
+          />
+          <input
+            type="text"
+            placeholder="Year"
+            onChange={(e) =>
+              setLeader({ ...leader, year: e.target.value })
+            }
+          />
+          <input
+            type="text"
+            placeholder="Register Number"
+            onChange={(e) =>
+              setLeader({ ...leader, regNo: e.target.value })
+            }
+          />
+          <input
+            type="text"
+            placeholder="Project Title"
+            onChange={(e) =>
+              setLeader({ ...leader, project: e.target.value })
+            }
+          />
 
-          <div className="bottom-section">
-            <button className="add-member" onClick={addMember}>
+          {/* MEMBERS SECTION */}
+          {members.map((member, index) => (
+            <div key={index} className="member-box">
+              <h3>Member {index + 1}</h3>
+
+              <input
+                type="text"
+                placeholder="Member Name"
+                onChange={(e) =>
+                  handleMemberChange(index, "name", e.target.value)
+                }
+              />
+              <input
+                type="text"
+                placeholder="Department"
+                onChange={(e) =>
+                  handleMemberChange(index, "dept", e.target.value)
+                }
+              />
+              <input
+                type="text"
+                placeholder="Year"
+                onChange={(e) =>
+                  handleMemberChange(index, "year", e.target.value)
+                }
+              />
+              <input
+                type="text"
+                placeholder="Register Number"
+                onChange={(e) =>
+                  handleMemberChange(index, "regNo", e.target.value)
+                }
+              />
+            </div>
+          ))}
+
+          {/* ADD MEMBER BUTTON */}
+          {members.length < memberCount - 1 && (
+            <button className="add-member" onClick={handleAddMember}>
               Add Member
             </button>
-            <button className="submit-btn" onClick={() => navigate("/teams")}>
-              Submit
-            </button>
-          </div>
+          )}
 
-          {/* Show all members */}
-          <div className="members-list">
-            <h3>Team Members:</h3>
-            {members.map((member, index) => (
-              <p key={index}>
-                <strong>Member {index + 1}:</strong> {member}
-              </p>
-            ))}
-          </div>
+          {/* SUBMIT BUTTON */}
+          {members.length === memberCount - 1 && (
+            <div className="bottom-section">
+              <button className="submit-btn" onClick={handleSubmit}>
+                Submit
+              </button>
+            </div>
+          )}
         </div>
       )}
     </div>

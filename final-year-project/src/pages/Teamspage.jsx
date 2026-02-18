@@ -11,9 +11,13 @@ function TeamsPage() {
         <div className="team-box" onClick={() => navigate("/teams2")}>
           Create Team
         </div>
-        <div className="team-box">Delete Team</div>
-        <div className="team-box">Assign Guide</div>
-        <div className="team-box">Assign Project Title</div>
+        <div className="team-box" onClick={() => navigate("/teams3")}>
+          Delete Team
+        </div>
+        <div className="team-box" onClick={() => navigate("/teams4")}>
+          Assign Guide
+        </div>
+        
       </div>
 
       <p className="teams-description">Manage and view project teams here.</p>

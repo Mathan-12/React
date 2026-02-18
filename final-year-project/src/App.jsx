@@ -10,9 +10,14 @@ import Review1Page from "./pages/Reviewsall/firstreview";
 import Secondreview1 from "./pages/Reviewsall/Secondreview";
 import Thridreview from "./pages/Reviewsall/thridreview";
 import Finalreview from "./pages/Reviewsall/finalreview";
+
 import Createteam from "./Teamsall/createteam";
+import Deleteteam from "./Teamsall/deleteteam";
+import Assignguide from "./Teamsall/Assignguide";
 
 import "./app.css";
+
+
 
 function PrivateRoute({ element, isLoggedIn }) {
   return isLoggedIn ? element : <Navigate to="/" />;
@@ -37,6 +42,8 @@ function App() {
       <Route path="/review3" element={<Thridreview />} />
       <Route path="/review4" element={<Finalreview />} />
       <Route path="/teams2" element={<Createteam />} />
+      <Route path="/teams3" element={<Deleteteam />} />
+      <Route path="/teams4" element={<Assignguide />} />
 
       {/* Login route */}
       <Route
