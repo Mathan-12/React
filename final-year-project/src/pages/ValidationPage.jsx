@@ -2,7 +2,7 @@ import { useState } from "react";
 import "./ValidationPage.css";
 
 function ResultPage() {
-  const [teamName, setTeamName] = useState("");
+  const [teamId, setTeamId] = useState("");
   const [teamData, setTeamData] = useState(null);
 
   // Simulated Database Data
@@ -27,7 +27,7 @@ function ResultPage() {
       r2: 45,
       r3: 30,
       synopsis: true,
-      report: false,   // one unchecked
+      report: false,
       presentation: true,
       reviewsDone: true
     }
@@ -35,7 +35,7 @@ function ResultPage() {
 
   const handleSearch = () => {
     const found = teams.find(
-      (team) => team.name.toLowerCase() === teamName.toLowerCase()
+      (team) => team.id.toLowerCase() === teamId.toLowerCase()
     );
     setTeamData(found || null);
   };
@@ -65,9 +65,9 @@ function ResultPage() {
 
       <input
         type="text"
-        placeholder="Enter Team Name"
-        value={teamName}
-        onChange={(e) => setTeamName(e.target.value)}
+        placeholder="Enter Team ID"
+        value={teamId}
+        onChange={(e) => setTeamId(e.target.value)}
       />
       <button onClick={handleSearch}>Search</button>
 
@@ -79,7 +79,6 @@ function ResultPage() {
 
           <hr />
 
-          {/* READ ONLY MARKS */}
           <p><strong>Review 1 Marks:</strong> {teamData.r1}</p>
           <p><strong>Review 2 Marks:</strong> {teamData.r2}</p>
           <p><strong>Review 3 Marks:</strong> {teamData.r3}</p>

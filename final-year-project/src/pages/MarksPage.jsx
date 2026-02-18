@@ -2,7 +2,7 @@ import { useState } from "react";
 import "./MarksPage.css";
 
 function ResultPage() {
-  const [teamName, setTeamName] = useState("");
+  const [teamId, setTeamId] = useState("");
   const [teamData, setTeamData] = useState(null);
 
   // Sample team data with marks (later connect DB)
@@ -35,7 +35,7 @@ function ResultPage() {
 
   const handleSearch = () => {
     const found = teams.find(
-      (team) => team.name.toLowerCase() === teamName.toLowerCase()
+      (team) => team.id.toLowerCase() === teamId.toLowerCase()
     );
     setTeamData(found || null);
   };
@@ -53,9 +53,9 @@ function ResultPage() {
       {/* Team Search */}
       <input
         type="text"
-        placeholder="Enter Team Name"
-        value={teamName}
-        onChange={(e) => setTeamName(e.target.value)}
+        placeholder="Enter Team ID"
+        value={teamId}
+        onChange={(e) => setTeamId(e.target.value)}
       />
       <button onClick={handleSearch}>Search</button>
 

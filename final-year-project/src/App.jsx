@@ -11,6 +11,8 @@ import Secondreview1 from "./pages/Reviewsall/Secondreview";
 import Thridreview from "./pages/Reviewsall/thridreview";
 import Finalreview from "./pages/Reviewsall/finalreview";
 
+import createteam from "./Teamsall/createteam";
+
 import "./app.css";
 
 function App() {
@@ -31,6 +33,7 @@ function App() {
       <Route path="/review2" element={<Secondreview1 />} />
       <Route path="/review3" element={<Thridreview />} />
       <Route path="/review4" element={<Finalreview />} />
+      <Route path="/teams2" element={<createteam /> } />
 
       {/* Login route */}
       {!isLoggedIn ? (
