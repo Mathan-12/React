@@ -11,7 +11,7 @@ function Secondreview1() {
       id: "T101",
       name: "Alpha",
       title: "AI Chatbot",
-      date: "20-02-2026",
+      date: "28-02-2026",
       time: "10:00 AM",
       venue: "Seminar Hall 1"
     },
@@ -19,7 +19,7 @@ function Secondreview1() {
       id: "T102",
       name: "Beta",
       title: "E-Commerce Website",
-      date: "21-02-2026",
+      date: "28-02-2026",
       time: "11:30 AM",
       venue: "Lab 3"
     }
